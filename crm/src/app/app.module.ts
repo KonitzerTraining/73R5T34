@@ -29,7 +29,7 @@ registerLocaleData(localeDe, 'de-DE');
     StartModule,
     CustomerModule,
 
-    // HelpModule,
+    // HelpModule,  // -> lazy loading
     LegalModule,
 
     // Basic Routing

@@ -22,6 +22,7 @@ export class CustomerNewComponent {
     // this.router.navigate(['/dashboard']);
     this.loading = true;
     this.errorMessage = null;
+    
     this.customerService.postCustomer(customer)
       .subscribe({
         next: () => {
