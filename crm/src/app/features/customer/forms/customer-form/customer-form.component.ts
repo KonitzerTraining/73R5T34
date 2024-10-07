@@ -17,7 +17,7 @@ export class CustomerFormComponent implements OnInit {
   @Output()
   customerSubmit = new EventEmitter<Partial<Customer>>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
     this.customerFormGroup = this.fb.group({
       name: [
         '',

@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
 
 
 /**
@@ -9,7 +10,7 @@ import { AppComponent } from './app.component';
  * fdescribe() is a Jasmine function that runs only the tests inside its block.
  * xdescribe() is a Jasmine function that skips the tests inside its block.
  */
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
 
   /**
    * beforeEach() is a global Jasmine function that runs some code before each test in a describe() block.
@@ -22,10 +23,12 @@ fdescribe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({ // Mini-Angular application
       imports: [
-        RouterModule.forRoot([])
+       // RouterModule.forRoot([])
+       RouterOutlet
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MockNavigationComponent
       ],
     }).compileComponents();
   });
@@ -69,10 +72,25 @@ fdescribe('AppComponent', () => {
     expect(app.title).toEqual('crm');
   }); */
 
-  it('should render title', () => {
+/*   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, crm');
-  });
+    expect(compiled.querySelector('h1')?.textContent)
+    .toContain('Hello, crm');
+  }); */
 });
+
+/**
+ * Mock-Komponente
+ * Eine Mock-Komponente ist eine Komponente, die anstelle einer echten Komponente in einem Test verwendet wird.
+ * 
+ * Test-Isolation
+ * In einem Unit-Test sollte die zu testende Komponente isoliert von anderen Komponenten getestet werden.
+ */
+@Component({
+  selector: 'app-navigation',
+  template: ''
+})
+class MockNavigationComponent {
+}

@@ -15,6 +15,8 @@ export class CustomerListComponent implements OnInit {
   // Dependency Injection
   customerService =  inject(CustomerService);
 
+  // constructor(private customerService: CustomerService) { }
+
   ngOnInit(): void {
     this.loadCustomers();
   }

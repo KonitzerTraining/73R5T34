@@ -13,7 +13,6 @@ export class CustomerNewComponent {
   public loading = false;
 
   constructor(
-
     private customerService: CustomerService,
     private router: Router,
   ) {}
