@@ -1,0 +1,80 @@
+{
+  "products": [
+    {
+      "id": 2,
+      "name": "Apple",
+      "price": 1.5,
+      "description": "A fruit"
+    },
+    {
+      "id": 3,
+      "name": "MTB Ultra",
+      "price": 2.5,
+      "description": "A versatile bike"
+    },
+    {
+      "id": 4,
+      "name": "MTB Light",
+      "price": 2.5,
+      "description": "A light bike"
+    },
+    {
+      "id": 5,
+      "name": "Cargo Light",
+      "price": 2.5,
+      "description": "A bike"
+    }
+  ],
+  "customers": [
+    {
+      "id": 4,
+      "name": "Lee",
+      "credit": 400
+    },
+    {
+      "name": "Matt",
+      "credit": 5000,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "name": "Stan",
+      "credit": 20
+    },
+    {
+      "id": 7,
+      "name": "Roy",
+      "credit": 350
+    },
+    {
+      "name": "Bart",
+      "credit": 580,
+      "id": 25
+    },
+    {
+      "name": "Stan",
+      "credit": 500,
+      "id": 26
+    },
+    {
+      "name": "Peter",
+      "credit": 300,
+      "id": 27
+    },
+    {
+      "name": "Pete",
+      "credit": 250.34,
+      "id": 28
+    },
+    {
+      "name": "Tom Taylor",
+      "credit": 3000,
+      "id": 29
+    },
+    {
+      "name": "test",
+      "credit": 234,
+      "id": 30
+    }
+  ]
+}

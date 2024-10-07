@@ -1,0 +1,10 @@
+<h2>New Customer</h2>
+
+<app-error-box [message]="errorMessage"></app-error-box>
+<app-loading-indicator [show]="loading"></app-loading-indicator>
+
+@if(!loading) {
+    <app-customer-form (customerSubmit)="createCustomer($event)">
+        Create Customer
+    </app-customer-form>
+}

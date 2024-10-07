@@ -1,0 +1,10 @@
+<h2>Edit Customer with ID {{ id }}</h2>
+
+<app-error-box [message]="errorMessage"></app-error-box>
+<app-loading-indicator [show]="loading"></app-loading-indicator>
+
+@if(errorMessage === null && !loading) {
+    <app-customer-form [data]="customer" (customerSubmit)="updateCustomer($event)">
+        Update Customer
+    </app-customer-form>
+}

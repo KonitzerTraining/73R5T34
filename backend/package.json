@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "json-server -w db.json -d 1000 -p 3002"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
+  }
+}
