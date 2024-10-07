@@ -11,6 +11,8 @@ import { Customer } from '../../model/customer';
 import { of } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { CustomerIndexComponent } from '../../customer-index.component';
+import { createCustomerServiceMock } from '../../../../../../__mocks__/services/customer.service.mock';
+import { customersMock } from '../../../../../../__mocks__/api/customers';
 
 fdescribe('CustomerNewComponent', () => {
   let component: CustomerNewComponent;
@@ -19,14 +21,7 @@ fdescribe('CustomerNewComponent', () => {
 
   beforeEach(async () => {
 
-    customerServiceMock = jasmine.createSpyObj(
-      'CustomerService', 
-      [
-        'postCustomer'
-      ]);
-      
-    customerServiceMock.postCustomer.and.returnValue(of({} as Customer));
-
+    customerServiceMock = createCustomerServiceMock();
     await TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([
@@ -66,11 +61,8 @@ fdescribe('CustomerNewComponent', () => {
 
   describe('createCustomer', () => {
     it('should call customerService.postCustomer', () => {
-      const customer = {
-        name: 'Test',
-        credit: 1000  
-      };
-
+      const customer = customersMock[0]
+      
      component.createCustomer(customer);
      expect(customerServiceMock.postCustomer).toHaveBeenCalled(); 
     });
