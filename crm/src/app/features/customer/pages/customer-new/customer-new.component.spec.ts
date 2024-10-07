@@ -8,7 +8,7 @@ import { ErrorBoxComponent } from '../../../../core/components/error-box/error-b
 import { LoadingIndicatorComponent } from '../../../../core/components/loading-indicator/loading-indicator.component';
 import { CustomerFormComponent } from '../../forms/customer-form/customer-form.component';
 
-fdescribe('CustomerNewComponent', () => {
+describe('CustomerNewComponent', () => {
   let component: CustomerNewComponent;
   let fixture: ComponentFixture<CustomerNewComponent>;
 
