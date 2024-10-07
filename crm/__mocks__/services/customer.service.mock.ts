@@ -15,7 +15,6 @@ export const createCustomerServiceMock = () => {
     customerServiceMock.getById.and.callFake(() => {
         return of(customersMock[0]);
     });
-
     customerServiceMock.postCustomer.and.callFake(() => {
         return of(customersMock[0]);
     });

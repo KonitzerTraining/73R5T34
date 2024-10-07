@@ -8,13 +8,13 @@ import { ErrorBoxComponent } from '../../../../core/components/error-box/error-b
 import { LoadingIndicatorComponent } from '../../../../core/components/loading-indicator/loading-indicator.component';
 import { CustomerFormComponent } from '../../forms/customer-form/customer-form.component';
 import { Customer } from '../../model/customer';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { CustomerIndexComponent } from '../../customer-index.component';
 import { createCustomerServiceMock } from '../../../../../../__mocks__/services/customer.service.mock';
 import { customersMock } from '../../../../../../__mocks__/api/customers';
 
-fdescribe('CustomerNewComponent', () => {
+describe('CustomerNewComponent', () => {
   let component: CustomerNewComponent;
   let fixture: ComponentFixture<CustomerNewComponent>;
   let customerServiceMock: jasmine.SpyObj<CustomerService>;
@@ -62,9 +62,22 @@ fdescribe('CustomerNewComponent', () => {
   describe('createCustomer', () => {
     it('should call customerService.postCustomer', () => {
       const customer = customersMock[0]
-      
+
      component.createCustomer(customer);
      expect(customerServiceMock.postCustomer).toHaveBeenCalled(); 
     });
+
+    it('should handle error', () => {
+      const customer = customersMock[0];
+      const errorMessage = 'Error message';
+      customerServiceMock.postCustomer.and.callFake(() => {
+        return throwError(() => {
+          return new Error(errorMessage);
+        })
+      });
+      component.createCustomer(customer);
+      expect(component.errorMessage).toBe(errorMessage);
+    });
+
   });
 });
