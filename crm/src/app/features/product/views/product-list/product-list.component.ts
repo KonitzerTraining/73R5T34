@@ -12,6 +12,7 @@ import { ProductActions } from '../../state/actions/product.actions';
 })
 export class ProductListComponent {
 
+
   readonly #store = inject(Store);
   products$ = this.#store.select(selectProducts);
   loading$: Observable<null | boolean> = this.#store.select(selectLoading);
@@ -20,5 +21,9 @@ export class ProductListComponent {
   deleteProduct(productId: number) {
     // Delete product
     this.#store.dispatch(ProductActions.deleteProduct({ productId }));
+  }
+
+  refeshProductIndex() {
+    this.#store.dispatch(ProductActions.loadProducts());
   }
 }

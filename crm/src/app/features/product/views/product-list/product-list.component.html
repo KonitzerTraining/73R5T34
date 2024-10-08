@@ -1,6 +1,12 @@
 <h2>List</h2>
 
 
+<div class="d-flex justify-content-between my-4">
+    <button class="btn btn-primary" routerLink="new">
+        New
+    </button>
+    <button class="btn btn-outline-secondary" (click)="refeshProductIndex()">Reload</button>
+</div>
 
 <app-error-box [message]="errorMessage$ | async"></app-error-box>
 <app-loading-indicator [show]="loading$ | async"></app-loading-indicator>
