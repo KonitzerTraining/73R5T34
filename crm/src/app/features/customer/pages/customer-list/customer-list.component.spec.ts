@@ -70,6 +70,26 @@ fdescribe('CustomerListComponent', () => {
       expect(component.errorMessage).toBe(errorMessage);
     });
   });
+
+  describe('deleteCustomer', () => {
+    it('should call customerService.deleteById', () => {
+      component.deleteCustomer(customersMock[0].id);
+      expect(customerServiceMock.deleteById).toHaveBeenCalledOnceWith(customersMock[0].id);
+    });
+
+    it('should handle error', () => {
+      const errorMessage = 'Error message';
+      customerServiceMock.deleteById.and.callFake(() => {
+        return throwError(() => {
+          return new Error(errorMessage);
+        })
+      });
+      
+      // fixture.detectChanges(); // triggers ngOnInit -> loadCustomers -> customerService.getAll
+      component.deleteCustomer(customersMock[0].id);
+      expect(component.errorMessage).toBe(errorMessage);
+    });
+  });
 });
 
 
