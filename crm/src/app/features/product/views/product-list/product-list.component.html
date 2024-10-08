@@ -1,6 +1,10 @@
 <h2>List</h2>
+
+
+
+<app-error-box [message]="errorMessage$ | async"></app-error-box>
+<app-loading-indicator [show]="loading$ | async"></app-loading-indicator>
+
 <pre>
-{{loading$ | async}}
-{{errorMessage$ | async}}
 {{products$ | async | json}}
 </pre>

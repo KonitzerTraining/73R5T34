@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './state/effects/product.effects';
 import { StoreModule } from '@ngrx/store';
 import { productFeature, productFeatureKey } from './state/reducers/product.reducer';
+import { CoreModule } from '../../core/core.module';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { productFeature, productFeatureKey } from './state/reducers/product.redu
   ],
   imports: [
     CommonModule,
+    CoreModule,
+    
     ProductRoutingModule,
     StoreModule.forFeature(productFeatureKey, productFeature.reducer),
     EffectsModule.forFeature([ProductEffects])
