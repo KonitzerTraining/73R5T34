@@ -5,6 +5,29 @@
 <app-error-box [message]="errorMessage$ | async"></app-error-box>
 <app-loading-indicator [show]="loading$ | async"></app-loading-indicator>
 
-<pre>
-{{products$ | async | json}}
-</pre>
+
+@if((errorMessage$ | async) === null && (loading$ | async) === false) {
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Preis</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of (products$ | async); track product.id) {
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td class="text-end">
+                    {{ product.price | currency:'EUR':'symbol' }}
+                </td>
+                <td>{{ product.description }}</td>
+               
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
