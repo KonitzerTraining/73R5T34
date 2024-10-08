@@ -11,7 +11,7 @@ import { createCustomerServiceMock } from '../../../../../../__mocks__/services/
 import { customersMock } from '../../../../../../__mocks__/api/customers';
 import { RouterLink, RouterModule } from '@angular/router';
 
-fdescribe('CustomerListComponent', () => {
+describe('CustomerListComponent', () => {
   let component: CustomerListComponent;
   let fixture: ComponentFixture<CustomerListComponent>;
   let customerServiceMock: jasmine.SpyObj<CustomerService>;
@@ -73,8 +73,18 @@ fdescribe('CustomerListComponent', () => {
 
   describe('deleteCustomer', () => {
     it('should call customerService.deleteById', () => {
+      component.customers = customersMock;
+      
+      // spyOn ist eine Funktion von Jasmine, die es ermöglicht, Methodenaufrufe zu überwachen
+      const filterSpy = spyOn(component.customers, 'filter').and.callThrough();
+
+      expect(component.customers.length).toBe(customersMock.length);
       component.deleteCustomer(customersMock[0].id);
+
       expect(customerServiceMock.deleteById).toHaveBeenCalledOnceWith(customersMock[0].id);
+      expect(filterSpy).toHaveBeenCalled();
+      expect(component.customers.length).toBe(customersMock.length - 1);
+      
     });
 
     it('should handle error', () => {
