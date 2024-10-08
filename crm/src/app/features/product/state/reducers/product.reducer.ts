@@ -11,13 +11,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  products: [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 100,
-    },
-  ],
+  products: [],
   loading: false,
   error: null,
 };
@@ -32,8 +26,16 @@ export const reducer = createReducer(
     };
   }),
 
-  /* on(ProductActions.loadProductsSuccess, (state, action) => state),
-  on(ProductActions.loadProductsFailure, (state, action) => state), */
+ on(ProductActions.loadProductsSuccess, (state, {products}) => {
+  return {
+    ...state,
+    products, // Shorthand property
+    loading: false,
+  }
+ }),
+  
+ /*
+ on(ProductActions.loadProductsFailure, (state, action) => state), */
 );
 
 export const productFeature = createFeature({

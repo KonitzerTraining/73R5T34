@@ -24,7 +24,7 @@ import { productFeature, productFeatureKey } from './state/reducers/product.redu
     CommonModule,
     ProductRoutingModule,
     StoreModule.forFeature(productFeatureKey, productFeature.reducer),
-    // EffectsModule.forFeature([ProductEffects])
+    EffectsModule.forFeature([ProductEffects])
   ],
   providers: [
     provideHttpClient()
