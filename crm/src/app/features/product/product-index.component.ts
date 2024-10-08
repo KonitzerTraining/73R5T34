@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ProductActions } from './state/actions/product.actions';
 
 @Component({
   selector: 'app-product-index',
@@ -10,5 +12,11 @@ import { Component } from '@angular/core';
   `
 })
 export class ProductIndexComponent {
+
+  #store = inject(Store);
+
+  constructor() { 
+    this.#store.dispatch(ProductActions.loadProducts());
+  }
 
 }
