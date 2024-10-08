@@ -18,6 +18,8 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
+
+  // Loading products
   on(ProductActions.loadProducts, state => {
     return {
       ...state, // Spread-Operator
@@ -36,6 +38,31 @@ export const reducer = createReducer(
   
  
  on(ProductActions.loadProductsFailure, (state, {error}) => {
+  return {
+    ...state,
+    loading: false,
+    error,
+  }
+ }), 
+
+ // Delete product
+  on(ProductActions.deleteProduct, state => {
+    return {
+      ...state, // Spread-Operator
+      loading: true,
+      error: null,
+    };
+  }),
+
+ on(ProductActions.deleteProductSuccess, (state, {productId}) => {
+  return {
+    ...state,
+    loading: false,
+  }
+ }),
+  
+ 
+ on(ProductActions.deleteProductFailure, (state, {error}) => {
   return {
     ...state,
     loading: false,

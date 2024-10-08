@@ -13,13 +13,7 @@
       "description": "A versatile bike"
     },
     {
-      "id": 4,
-      "name": "MTB Light",
-      "price": 2.5,
-      "description": "A light bike"
-    },
-    {
-      "id": 5,
+      "id": 8,
       "name": "Cargo Light",
       "price": 2.5,
       "description": "A bike"
