@@ -3,46 +3,76 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CustomerListComponent } from './customer-list.component';
 import { CustomerService } from '../../services/customer.service';
 // import { Component } from '@angular/core';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { MockComponents } from 'ng-mocks';
 import { ErrorBoxComponent } from '../../../../core/components/error-box/error-box.component';
 import { LoadingIndicatorComponent } from '../../../../core/components/loading-indicator/loading-indicator.component';
+import { createCustomerServiceMock } from '../../../../../../__mocks__/services/customer.service.mock';
+import { customersMock } from '../../../../../../__mocks__/api/customers';
 
 describe('CustomerListComponent', () => {
   let component: CustomerListComponent;
   let fixture: ComponentFixture<CustomerListComponent>;
+  let customerServiceMock: jasmine.SpyObj<CustomerService>;
 
   beforeEach(async () => {
+    customerServiceMock = createCustomerServiceMock();
+
     await TestBed.configureTestingModule({
       providers: [
         {
           provide: CustomerService,
-          useValue: {
-            getAll: () => { return of([]) }
-          }
+          useValue: customerServiceMock
         }
       ],
       declarations: [
         CustomerListComponent,
-/*         MockComponent(ErrorBoxComponent),
-        MockComponent(LoadingIndicatorComponent), */
+        /*         MockComponent(ErrorBoxComponent),
+                MockComponent(LoadingIndicatorComponent), */
         MockComponents(
-          ErrorBoxComponent, 
+          ErrorBoxComponent,
           LoadingIndicatorComponent)
       ]
     })
       .compileComponents();
 
     fixture = TestBed.createComponent(CustomerListComponent);
-    component = fixture.componentInstance;
+    component = fixture.componentInstance; // triggers ngOnInit -> loadCustomers -> customerService.getAll
+
     // triggers ngOnInit -> loadCustomers -> customerService.getAll
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('loadCustomers', () => {
+
+    it('should call customerService.loadCustomers', () => {
+      fixture.detectChanges(); // triggers ngOnInit -> loadCustomers -> customerService.getAll
+      expect(customerServiceMock.getAll).toHaveBeenCalled();
+    });
+
+    it('should handle error', () => {
+      const errorMessage = 'Error message';
+      
+      customerServiceMock.getAll.and.callFake(() => {
+        return throwError(() => {
+          return new Error(errorMessage);
+        })
+      });
+      
+      // fixture.detectChanges(); // triggers ngOnInit -> loadCustomers -> customerService.getAll
+      component.loadCustomers();
+      expect(component.errorMessage).toBe(errorMessage);
+    });
+
+  });
+
 });
+
+
 
 /* @Component({
   selector: 'app-error-box',
