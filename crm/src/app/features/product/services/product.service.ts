@@ -20,4 +20,8 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.#http.get<Product[]>(url);
   }
+
+  deleteById(id: number): Observable<void> {
+    return this.#http.delete<void>(url + id);
+  }
 }

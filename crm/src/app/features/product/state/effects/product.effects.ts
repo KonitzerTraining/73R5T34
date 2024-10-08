@@ -26,5 +26,27 @@ export class ProductEffects {
       )
     );
   });
+
+  deleteProduct$ = createEffect(() => {
+    return this.#actions$.pipe(
+      ofType(ProductActions.deleteProduct),
+      exhaustMap(({productId}) =>
+        this.#productService.deleteById(productId).pipe(
+          map(() => ProductActions.deleteProductSuccess({ productId })),
+          catchError(error => of(ProductActions.deleteProductFailure({ error: error.message }))))
+      )
+    );
+  });
+
+  
+  // Variante 1: Produkte komplett neu laden
+  deleteProductSuccess$ = createEffect(() => {
+    return this.#actions$.pipe(
+
+      ofType(ProductActions.deleteProductSuccess),
+      map(() => ProductActions.loadProducts())
+    );
+  });
+
  
 }
