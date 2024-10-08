@@ -9,8 +9,9 @@ import { ErrorBoxComponent } from '../../../../core/components/error-box/error-b
 import { LoadingIndicatorComponent } from '../../../../core/components/loading-indicator/loading-indicator.component';
 import { createCustomerServiceMock } from '../../../../../../__mocks__/services/customer.service.mock';
 import { customersMock } from '../../../../../../__mocks__/api/customers';
+import { RouterLink, RouterModule } from '@angular/router';
 
-describe('CustomerListComponent', () => {
+fdescribe('CustomerListComponent', () => {
   let component: CustomerListComponent;
   let fixture: ComponentFixture<CustomerListComponent>;
   let customerServiceMock: jasmine.SpyObj<CustomerService>;
@@ -19,6 +20,9 @@ describe('CustomerListComponent', () => {
     customerServiceMock = createCustomerServiceMock();
 
     await TestBed.configureTestingModule({
+      imports: [
+        RouterModule.forRoot([])
+      ],
       providers: [
         {
           provide: CustomerService,
@@ -48,7 +52,6 @@ describe('CustomerListComponent', () => {
   });
 
   describe('loadCustomers', () => {
-
     it('should call customerService.loadCustomers', () => {
       fixture.detectChanges(); // triggers ngOnInit -> loadCustomers -> customerService.getAll
       expect(customerServiceMock.getAll).toHaveBeenCalled();
@@ -56,7 +59,6 @@ describe('CustomerListComponent', () => {
 
     it('should handle error', () => {
       const errorMessage = 'Error message';
-      
       customerServiceMock.getAll.and.callFake(() => {
         return throwError(() => {
           return new Error(errorMessage);
@@ -67,9 +69,7 @@ describe('CustomerListComponent', () => {
       component.loadCustomers();
       expect(component.errorMessage).toBe(errorMessage);
     });
-
   });
-
 });
 
 
