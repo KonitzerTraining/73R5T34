@@ -7,5 +7,9 @@ export const ProductActions = createActionGroup({
     'Load Products': emptyProps(),
     'Load Products Success': props<{ products: Product[] }>(),
     'Load Products Failure': props<{ error: string }>(),
+
+    'Delete Product': props<{productId: number}>(),
+    'Delete Product Success': props<{productId: number}>(),
+    'Delete Product Failure': props<{ error: string }>(),
   }
 });

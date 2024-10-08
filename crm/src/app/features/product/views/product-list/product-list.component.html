@@ -14,6 +14,7 @@
                 <th>Name</th>
                 <th>Preis</th>
                 <th>Description</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,11 @@
                     {{ product.price | currency:'EUR':'symbol' }}
                 </td>
                 <td>{{ product.description }}</td>
-               
+               <td class="text-end">
+                <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">
+                    Delete
+                </button>
+               </td>
             </tr>
             }
         </tbody>
