@@ -7,13 +7,13 @@
       "description": "A fruit"
     },
     {
-      "id": 3,
-      "name": "MTB Ultra",
+      "id": 4,
+      "name": "MTB Light",
       "price": 2.5,
-      "description": "A versatile bike"
+      "description": "A light bike"
     },
     {
-      "id": 8,
+      "id": 5,
       "name": "Cargo Light",
       "price": 2.5,
       "description": "A bike"

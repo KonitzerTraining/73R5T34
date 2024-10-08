@@ -39,14 +39,14 @@ export class ProductEffects {
   });
 
   
-  // Variante 1: Produkte komplett neu laden
+/*   // Variante 1: Produkte komplett neu laden
   deleteProductSuccess$ = createEffect(() => {
     return this.#actions$.pipe(
 
       ofType(ProductActions.deleteProductSuccess),
       map(() => ProductActions.loadProducts())
     );
-  });
+  }); */
 
  
 }

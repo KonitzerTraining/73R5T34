@@ -54,9 +54,11 @@ export const reducer = createReducer(
     };
   }),
 
+  // Variante 2: Produkt aus Liste entfernen
  on(ProductActions.deleteProductSuccess, (state, {productId}) => {
   return {
     ...state,
+    products: state.products.filter(product => product.id !== productId),
     loading: false,
   }
  }),
