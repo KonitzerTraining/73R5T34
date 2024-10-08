@@ -74,11 +74,12 @@ describe('CustomerListComponent', () => {
   describe('deleteCustomer', () => {
     it('should call customerService.deleteById', () => {
       component.customers = customersMock;
-      
+
       // spyOn ist eine Funktion von Jasmine, die es ermöglicht, Methodenaufrufe zu überwachen
       const filterSpy = spyOn(component.customers, 'filter').and.callThrough();
 
       expect(component.customers.length).toBe(customersMock.length);
+      
       component.deleteCustomer(customersMock[0].id);
 
       expect(customerServiceMock.deleteById).toHaveBeenCalledOnceWith(customersMock[0].id);
