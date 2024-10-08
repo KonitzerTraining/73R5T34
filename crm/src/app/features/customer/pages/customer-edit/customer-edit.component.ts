@@ -24,7 +24,7 @@ export class CustomerEditComponent implements OnInit {
     // Vorzeichenänderung bewirkt impliziten Cast, alternativ: parseInt()
     // this.id = parseInt(this.activatedRoute.snapshot.params['id']);
     this.id = +this.activatedRoute.snapshot.params['id'];
-    console.log(this.id, typeof this.id);
+    //console.log(this.id, typeof this.id);
   }
 
   ngOnInit(): void {
