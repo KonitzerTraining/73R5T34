@@ -11,7 +11,13 @@ export interface State {
 }
 
 export const initialState: State = {
-  products: [],
+  products: [
+    {
+      id: 1,
+      name: 'Product 1',
+      price: 100,
+    },
+  ],
   loading: false,
   error: null,
 };
@@ -25,7 +31,7 @@ export const reducer = createReducer(
       error: null,
     };
   }),
-  
+
   /* on(ProductActions.loadProductsSuccess, (state, action) => state),
   on(ProductActions.loadProductsFailure, (state, action) => state), */
 );

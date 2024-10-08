@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+
+import { Store } from '@ngrx/store';
+import { selectLoading, selectProducts } from '../../state/selectors/product.selectors';
 
 @Component({
   selector: 'app-product-list',
@@ -8,5 +10,6 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductListComponent {
 
-  products$ = inject(ProductService).getProducts();
+  products$ = inject(Store).select(selectProducts);
+  loading$ = inject(Store).select(selectLoading);
 }
