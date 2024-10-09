@@ -5,6 +5,8 @@ import { EMPTY, of } from 'rxjs';
 import { ProductActions } from '../actions/product.actions';
 import { ProductService } from '../../services/product.service';
 import { AuthActions } from '../../../auth/state/actions/auth.actions';
+import { ROUTER_NAVIGATED } from '@ngrx/router-store';
+import { RouterState } from '@angular/router';
 
 
 @Injectable()
@@ -13,12 +15,29 @@ export class ProductEffects {
   #actions$: Actions = inject(Actions);
   #productService = inject(ProductService);
 
-  login$ = createEffect(() => {
+  // Variante 1: Laden nach Login
+/*   login$ = createEffect(() => {
     return this.#actions$.pipe(
       ofType(AuthActions.loginSuccess),
       map(() => ProductActions.loadProducts())
     );
+  }); */
+
+  // Variante 2: Laden nach Navigation
+  loadProductsOnNavigation$ = createEffect(() => {
+    return this.#actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      map((data : { payload: {routerState: {url: string}}}) => {
+        const url = data.payload.routerState.url
+        if(url === '/product-index') {
+          return ProductActions.loadProducts()
+        } else {
+          return ProductActions.nothing()
+        }
+      })
+    );
   });
+
 
   loadProducts$ = createEffect(() => {
     return this.#actions$.pipe(

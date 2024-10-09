@@ -11,5 +11,7 @@ export const ProductActions = createActionGroup({
     'Delete Product': props<{productId: number}>(),
     'Delete Product Success': props<{productId: number}>(),
     'Delete Product Failure': props<{ error: string }>(),
+
+    'Nothing': emptyProps()
   }
 });
