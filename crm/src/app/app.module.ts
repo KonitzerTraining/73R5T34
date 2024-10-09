@@ -19,6 +19,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProductModule } from './features/product/product.module';
 import { AuthModule } from './features/auth/auth.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { loggingInterceptor } from './core/services/logging.interceptor';
 
 registerLocaleData(localeDe, 'de-DE');
 
