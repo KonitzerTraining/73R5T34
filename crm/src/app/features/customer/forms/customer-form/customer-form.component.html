@@ -7,7 +7,7 @@
         }">
     </div>
     <div class="mb-3">
-        <label for="credit" class="form-label">Credit</label>
+        <label for="credit" class="form-label">Credit:</label>
         <input type="number" step="0.01" min="0" name="credit" id="credit" class="form-control" formControlName="credit" [ngClass]="{
             'is-invalid': customerFormGroup.controls['credit'].invalid && customerFormGroup.controls['credit'].touched,
             'is-valid': customerFormGroup.controls['credit'].valid && customerFormGroup.controls['credit'].touched,
