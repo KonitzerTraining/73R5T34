@@ -4,6 +4,7 @@ import { catchError, map, concatMap, exhaustMap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 import { ProductActions } from '../actions/product.actions';
 import { ProductService } from '../../services/product.service';
+import { AuthActions } from '../../../auth/state/actions/auth.actions';
 
 
 @Injectable()
@@ -11,6 +12,13 @@ export class ProductEffects {
 
   #actions$: Actions = inject(Actions);
   #productService = inject(ProductService);
+
+  login$ = createEffect(() => {
+    return this.#actions$.pipe(
+      ofType(AuthActions.loginSuccess),
+      map(() => ProductActions.loadProducts())
+    );
+  });
 
   loadProducts$ = createEffect(() => {
     return this.#actions$.pipe(
@@ -30,7 +38,7 @@ export class ProductEffects {
   deleteProduct$ = createEffect(() => {
     return this.#actions$.pipe(
       ofType(ProductActions.deleteProduct),
-      exhaustMap(({productId}) =>
+      exhaustMap(({ productId }) =>
         this.#productService.deleteById(productId).pipe(
           map(() => ProductActions.deleteProductSuccess({ productId })),
           catchError(error => of(ProductActions.deleteProductFailure({ error: error.message }))))
@@ -38,15 +46,15 @@ export class ProductEffects {
     );
   });
 
+
+  /*   // Variante 1: Produkte komplett neu laden
+    deleteProductSuccess$ = createEffect(() => {
+      return this.#actions$.pipe(
   
-/*   // Variante 1: Produkte komplett neu laden
-  deleteProductSuccess$ = createEffect(() => {
-    return this.#actions$.pipe(
+        ofType(ProductActions.deleteProductSuccess),
+        map(() => ProductActions.loadProducts())
+      );
+    }); */
 
-      ofType(ProductActions.deleteProductSuccess),
-      map(() => ProductActions.loadProducts())
-    );
-  }); */
 
- 
 }

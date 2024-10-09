@@ -13,10 +13,13 @@ import { ProductActions } from './state/actions/product.actions';
 })
 export class ProductIndexComponent {
 
+  /*
+   
   #store = inject(Store);
 
   constructor() { 
     this.#store.dispatch(ProductActions.loadProducts());
-  }
+  } 
+    */
 
 }
