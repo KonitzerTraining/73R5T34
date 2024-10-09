@@ -69,6 +69,11 @@
       "name": "test",
       "credit": 234,
       "id": 30
+    },
+    {
+      "name": "seretr",
+      "credit": 45,
+      "id": 31
     }
   ]
 }

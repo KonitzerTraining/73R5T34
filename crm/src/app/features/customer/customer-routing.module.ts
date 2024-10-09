@@ -4,11 +4,13 @@ import { CustomerIndexComponent } from './customer-index.component';
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { CustomerNewComponent } from './pages/customer-new/customer-new.component';
 import { CustomerEditComponent } from './pages/customer-edit/customer-edit.component';
+import { authGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: CustomerIndexComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
