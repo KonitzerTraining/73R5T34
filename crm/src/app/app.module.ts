@@ -18,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProductModule } from './features/product/product.module';
+import { AuthModule } from './features/auth/auth.module';
 
 registerLocaleData(localeDe, 'de-DE');
 
@@ -31,6 +32,7 @@ registerLocaleData(localeDe, 'de-DE');
     BrowserModule,
 
     // Feature Module
+    AuthModule,
     StartModule,
     CustomerModule,
     ProductModule,
