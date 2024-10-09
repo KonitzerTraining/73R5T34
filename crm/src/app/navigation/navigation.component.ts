@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../features/auth/state/actions/auth.actions';
 
 @Component({
   selector: 'app-navigation',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
 
+  #store = inject(Store);
+
+  logout() {
+    this.#store.dispatch(AuthActions.logout());
+  }
 }
