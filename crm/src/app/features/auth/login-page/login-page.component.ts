@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class LoginPageComponent {
 
+  loginFormGroup = inject(FormBuilder).group({
+    email: ['tim@example.com', [Validators.required, Validators.email]],
+    password: ['345rgerwr34r', [Validators.required]]
+  });
+    
+  loginSubmit() {
+    console.log(this.loginFormGroup.value);
+  }
 }

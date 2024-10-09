@@ -1,1 +1,17 @@
-<p>login-page works!</p>
+<h1 class="display-3">Login</h1>
+<form [formGroup]="loginFormGroup" (ngSubmit)="loginSubmit()">
+  <div class="form-group mb-3">
+    <label for="email" class="form-label" >Email</label>
+    <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{
+        'is-invalid': loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid,
+        'is-valid': loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].valid
+    }">
+  </div>
+  <div class="form-group mb-3">
+    <label class="form-label" for="password">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password"  [ngClass]="{
+        'is-invalid': loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid,
+        'is-valid': loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].valid
+    }">
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="loginFormGroup.invalid">Submit</button>
