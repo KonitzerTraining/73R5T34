@@ -20,3 +20,9 @@ export const selectIsAuthenticated = createSelector(
 );
 
 
+// Loading Selector
+export const selectLoading = createSelector(
+  selectAuthState,
+  (state) => state.loading
+);
+

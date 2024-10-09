@@ -1,7 +1,12 @@
+<h1 class="display-3">Login</h1>
+
+<app-loading-indicator [show]="loading$ | async"></app-loading-indicator>
+
+
 @if (isAuthenticated$ | async) {
 <h2>Welcome, {{ userName$ | async }}</h2>
-} @else {
-<h1 class="display-3">Login</h1>
+} @else if ((loading$ | async) === false) {
+
 <form [formGroup]="loginFormGroup" (ngSubmit)="loginSubmit()">
   <div class="form-group mb-3">
     <label for="email" class="form-label">Email</label>

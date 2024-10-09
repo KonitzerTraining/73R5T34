@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/effects/auth.effects';
 import { StoreModule } from '@ngrx/store';
 import { authFeatureKey, reducer } from './state/reducers/auth.reducer';
+import { CoreModule } from '../../core/core.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { authFeatureKey, reducer } from './state/reducers/auth.reducer';
     CommonModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    CoreModule,
     StoreModule.forFeature(authFeatureKey, reducer),
     EffectsModule.forFeature([AuthEffects])
   ]
