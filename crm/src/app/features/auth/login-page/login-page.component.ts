@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '../state/actions/auth.actions';
 import { LoginData } from '../model/login-data';
+import { selectIsAuthenticated, selectUserName } from '../state/selectors/auth.selectors';
 
 @Component({
   selector: 'app-login-page',
@@ -12,6 +13,9 @@ import { LoginData } from '../model/login-data';
 export class LoginPageComponent {
 
   #store = inject(Store);
+  isAuthenticated$ = this.#store.select(selectIsAuthenticated);
+  userName$ = this.#store.select(selectUserName);
+
   loginFormGroup = inject(FormBuilder).group({
     email: ['tim@example.com', [Validators.required, Validators.email]],
     password: ['345rgerwr34r', [Validators.required]]
@@ -21,3 +25,4 @@ export class LoginPageComponent {
     this.#store.dispatch(AuthActions.login({ login: this.loginFormGroup.value as LoginData}));
   }
 }
+
